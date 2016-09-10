@@ -1,5 +1,5 @@
 #include "KDTree.h"
-#ifdef __MINGW32__
+#if defined(__MINGW32__) || (_MSC_VER >= 1800)
 #include <stdint.h>
 #endif
 #include "mex.h"
@@ -57,7 +57,7 @@ void mexFunction(int nlhs, mxArray * plhs[], int nrhs, const mxArray * prhs[]){
     // return the program a pointer to the created tree
     plhs[0] = mxCreateDoubleMatrix(1,1,mxREAL);
     double* pointer_to_tree = mxGetPr(plhs[0]);
-#ifdef __MINGW32__
+#if defined(__MINGW32__) || (_MSC_VER >= 1800)
     pointer_to_tree[0] = ( intptr_t )tree;
 #else
     pointer_to_tree[0] = (long) tree;
